@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "hearth"
 version = "0.1.0"
@@ -9,6 +13,12 @@ dependencies = [
     "httpx>=0.28.1",
     "uvicorn>=0.44.0",
 ]
+
+[project.scripts]
+hearth = "app.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/app"]
 
 [dependency-groups]
 dev = [
@@ -52,8 +62,8 @@ wrap-summaries = 72
 [tool.isort]
 line_length = 79
 profile = "black"
-known_first_party = ["src"]
-src_paths = ["src"]
+known_first_party = ["app"]
+src_paths = ["src", "tests"]
 sections = [
     "FUTURE",
     "STDLIB",
@@ -69,6 +79,7 @@ import_heading_localfolder = "Local"
 
 [tool.mypy]
 python_version = "3.12"
+mypy_path = "src"
 strict = true
 warn_unused_configs = true
 warn_unused_ignores = true
@@ -76,6 +87,12 @@ ignore_missing_imports = true
 disallow_incomplete_defs = true
 explicit_package_bases = true
 
+[tool.pyright]
+include = ["src", "tests"]
+extraPaths = ["src"]
+pythonVersion = "3.12"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-v --cov=src --cov-report=term-missing"
+pythonpath = ["src"]
+addopts = "-v --cov=app --cov-report=term-missing"
