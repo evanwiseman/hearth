@@ -4,7 +4,7 @@ install:  ## Install dependencies
 	uv sync
 
 run:  ## Run the application
-	uv run python -m src.main
+	uv run hearth
 
 format:  ## Format code with black, isort, and docformatter
 	uv run black src tests
