@@ -6,5 +6,25 @@ dist/
 wheels/
 *.egg-info
 
-# Virtual environments
+# Environment
 .venv
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.pytest_cache/
+.mypy_cache/
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/

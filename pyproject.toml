@@ -5,3 +5,73 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
+
+[dependency-groups]
+dev = [
+    "bandit>=1.9.4",
+    "black>=26.3.1",
+    "docformatter>=1.7.7",
+    "flake8>=7.3.0",
+    "flake8-annotations>=3.2.0",
+    "flake8-bugbear>=25.11.29",
+    "flake8-docstrings>=1.7.0",
+    "isort>=8.0.1",
+    "mypy>=1.20.0",
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+]
+
+[tool.black]
+line-length = 79
+target-version = ["py312"]
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "if __name__ == .__main__.:",
+]
+
+[tool.docformatter]
+force-period-at-end = true
+in-place = true
+style = "google"
+pre-summary-newline = false
+post-summary-newline = true
+wrap-descriptions = 72
+wrap-summaries = 72
+
+[tool.isort]
+line_length = 79
+profile = "black"
+known_first_party = ["src"]
+src_paths = ["src"]
+sections = [
+    "FUTURE",
+    "STDLIB",
+    "THIRDPARTY",
+    "FIRSTPARTY",
+    "LOCALFOLDER",
+]
+import_heading_future = "Future imports"
+import_heading_stdlib = "Standard library"
+import_heading_thirdparty = "Third party"
+import_heading_firstparty = "First party"
+import_heading_localfolder = "Local"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+disallow_incomplete_defs = true
+explicit_package_bases = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=src --cov-report=term-missing"
