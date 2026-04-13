@@ -1,0 +1,1 @@
+"""Hearth application configuration package."""
